@@ -30,8 +30,8 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-slate-200 bg-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_1fr_1fr] lg:px-8">
-        <div>
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-5 gap-y-8 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_1fr_1fr] lg:gap-10 lg:px-8">
+        <div className="col-span-2 lg:col-span-1">
           <div className="mb-4 flex items-center gap-3 font-semibold tracking-[0.2em] text-navy">
             <Image src="/logo.jpg" alt="Aamnivora logo" width={260} height={90} className="h-20 w-auto object-contain sm:h-24" />
           </div>
@@ -41,10 +41,10 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-ink">Navigation</h2>
-          <div className="flex flex-col gap-3 text-sm text-slate-600">
+          <h2 className="mb-3 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-ink sm:mb-4 sm:text-sm">Navigation</h2>
+          <div className="flex flex-col gap-2 text-[13px] text-slate-600 sm:gap-3 sm:text-sm">
             {footerNav.map((item) => (
-              <Link key={item.href} href={item.href} className="inline-flex items-center gap-2 text-slate-600 transition hover:text-navy">
+              <Link key={item.href} href={item.href} className="inline-flex items-center gap-1.5 text-slate-600 transition hover:text-navy sm:gap-2">
                 <FooterIconCircle icon={item.icon} />
                 {item.label}
               </Link>
@@ -53,13 +53,13 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-ink">Connect</h2>
-          <div className="flex flex-col gap-3 text-sm text-slate-600">
-            <a href="mailto:contact.aamnivora@gmail.com" className="inline-flex items-center gap-2 transition hover:text-navy">
+          <h2 className="mb-3 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-ink sm:mb-4 sm:text-sm">Connect</h2>
+          <div className="flex flex-col gap-2 text-[13px] text-slate-600 sm:gap-3 sm:text-sm">
+            <a href="mailto:contact.aamnivora@gmail.com" className="inline-flex items-center gap-1.5 break-words transition hover:text-navy sm:gap-2">
               <FooterIconCircle icon={Mail} />
               contact.aamnivora@gmail.com
             </a>
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-2 pt-1.5 sm:gap-3 sm:pt-2">
               {[
                 { label: 'LinkedIn', href: 'https://www.linkedin.com/company/aamnivora', icon: Linkedin },
                 { label: 'Instagram', href: 'https://www.instagram.com/aamnivora', icon: Instagram },

@@ -1,6 +1,6 @@
 "use client";
 
-import type { HTMLAttributes, ReactNode } from 'react';
+import { useEffect, useState, type HTMLAttributes, type ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -20,6 +20,27 @@ type FannedCardProps = Omit<
   onHoverEnd?: () => void;
 };
 
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 1024px)');
+
+    const handleChange = () => {
+      setIsDesktop(mediaQuery.matches);
+    };
+
+    handleChange();
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+    };
+  }, []);
+
+  return isDesktop;
+}
+
 export function FannedCard({
   className,
   icon,
@@ -35,10 +56,11 @@ export function FannedCard({
   ...props
 }: FannedCardProps) {
   const shouldReduceMotion = useReducedMotion();
+  const isDesktop = useIsDesktop();
   const isActive = activeIndex === index;
   const hasHoverFocus = activeIndex !== null;
   const direction = activeIndex === null ? 0 : index < activeIndex ? -1 : 1;
-  const settledRotation = shouldReduceMotion ? 0 : rotation + (hasHoverFocus && !isActive ? direction * 2 : 0);
+  const settledRotation = shouldReduceMotion || !isDesktop ? 0 : rotation + (hasHoverFocus && !isActive ? direction * 2 : 0);
   const settledX = shouldReduceMotion ? 0 : hasHoverFocus && !isActive ? direction * 18 : 0;
 
   return (
