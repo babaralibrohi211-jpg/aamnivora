@@ -4,7 +4,10 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
-type FannedCardProps = HTMLAttributes<HTMLElement> & {
+type FannedCardProps = Omit<
+  HTMLAttributes<HTMLElement>,
+  'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart' | 'onAnimationEnd'
+> & {
   icon: ReactNode;
   number: string;
   title: string;
